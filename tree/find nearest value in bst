@@ -1,0 +1,36 @@
+import sys
+INT_MAX = sys.maxsize
+
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+        
+        
+    def findClosestValueInBst(tree, target):
+    # Write your code here.
+    curr = [INT_MAX, 0]  # stored ans at index 1 and max value at index 0.
+    f(tree, target, curr)
+    return curr[1] # used pass by reference technique.
+    
+    
+    def f(root, tar, curr) :
+        if root is None :
+            return
+        val = abs(tar - root.value)
+        if val < curr[0] : 
+            curr[1] = root.value 
+        curr[0] = min(curr[0], val)
+
+        if root.value > tar :
+            f(root.left, tar, curr)
+
+        else:
+            f(root.right, tar, curr)
+
+
+    
+
+
