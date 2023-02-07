@@ -1,0 +1,27 @@
+# O(n) time | O(d) space   d--> depth of tree
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def validateBst(tree):
+    maxRange = float("inf")
+    minRange = -maxRange
+    return validateBstHelper(tree, maxRange, minRange)
+
+
+def validateBstHelper(tree, maxRange,minRange) :
+    if tree is None :
+        return True
+
+    if tree.value < minRange or tree.value >= maxRange :
+        return False
+
+    left = validateBstHelper(tree.left, tree.value, minRange)
+    right = validateBstHelper(tree.right, maxRange, tree.value)
+
+    return left and right 
+    
