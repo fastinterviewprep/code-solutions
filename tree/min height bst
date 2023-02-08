@@ -1,0 +1,41 @@
+# O(n log n) time | O(n) space
+def minHeightBstHelper(array, tree, startIdx, endIdx):
+    if endIdx < startIdx:
+        return tree
+        
+    midIdx = (startIdx + endIdx) // 2
+    midValue = array[midIdx]
+
+    if tree == None :
+        tree = BST(midValue)
+
+    else:
+        tree.insert(midValue)
+    minHeightBstHelper(array, tree, startIdx, midIdx - 1)
+    minHeightBstHelper(array, tree, midIdx + 1, endIdx)
+    return tree    
+    
+def minHeightBst(array):
+    tree = None
+    startIdx = 0
+    endIdx = len(array) - 1
+    return minHeightBstHelper(array, tree, startIdx , endIdx)
+
+
+class BST:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+    def insert(self, value):
+        if value < self.value:
+            if self.left is None:
+                self.left = BST(value)
+            else:
+                self.left.insert(value)
+        else:
+            if self.right is None:
+                self.right = BST(value)
+            else:
+                self.right.insert(value)
