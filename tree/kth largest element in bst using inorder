@@ -1,0 +1,25 @@
+# O(n)  time | O(n) space
+
+class BST:
+    def __init__(self, value, left=None, right=None):
+        self.value = value
+        self.left = left
+        self.right = right
+
+
+def inorder(tree, array):
+    if tree is None :
+        return array
+
+    inorder(tree.left, array)
+    array.append(tree.value)
+    inorder(tree.right, array)
+
+    return array
+
+def findKthLargestValueInBst(tree, k):
+    # Write your code here.
+    array = []
+    print(inorder(tree, array))
+    
+    return array[-k]
