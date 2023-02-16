@@ -1,0 +1,26 @@
+# O(n) time  |   O(n) space
+class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+
+def branchSums(root):
+    # Write your code here.
+    array = []
+    branchSumsHelper(root, 0, array)
+    return array
+
+def branchSumsHelper(root, currentSum, array):
+    if root is None :
+        return 
+        
+    if root.left == None and root.right == None :
+        array.append(currentSum + root.value)
+        return
+
+    currentSum += root.value
+    branchSumsHelper(root.left, currentSum, array)
+    branchSumsHelper(root.right, currentSum, array)
+    
